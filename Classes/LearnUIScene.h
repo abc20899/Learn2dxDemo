@@ -21,6 +21,8 @@ public:
 
     virtual bool init();
 
+    void addSp(const std::string &filename);
+
     // implement the "static create()" method manually
     CREATE_FUNC(LearnUI);
 };

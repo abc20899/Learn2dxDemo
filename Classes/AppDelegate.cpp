@@ -23,12 +23,7 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
-#include "LearnScenePoint.h"
-#include "LearnSceneMath.h"
-#include "BallSpriteScene.h"
-#include "LearnEventScene.h"
-#include "LearnUIScene.h"
+#include "MainScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -47,10 +42,17 @@ using namespace CocosDenshion;
 
 USING_NS_CC;
 
+//横屏
 static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
+
+//竖屏
+//static cocos2d::Size designResolutionSize = cocos2d::Size(320, 480);
+//static cocos2d::Size smallResolutionSize = cocos2d::Size(320, 480);
+//static cocos2d::Size mediumResolutionSize = cocos2d::Size(768, 1024);
+//static cocos2d::Size largeResolutionSize = cocos2d::Size(1536, 2048);
 
 AppDelegate::AppDelegate() {
 }
@@ -123,16 +125,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-//    auto scene = HelloWorld::createScene();
-//    auto scene = LearnScenePoint::createScene();
-//    auto scene = LearnSceneMath::createScene();
-//    auto scene = BallSprite::createScene();
-//    auto scene = LearnEvent::createScene();
-    auto scene = LearnUI::createScene();
+    auto scene = MainScene::createScene();
 
     // run
     director->runWithScene(scene);
-
     return true;
 }
 
@@ -157,5 +153,27 @@ void AppDelegate::applicationWillEnterForeground() {
 #elif USE_SIMPLE_AUDIO_ENGINE
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
+#endif
+}
+
+//横竖屏监听
+void AppDelegate::applicationScreenSizeChanged(int newWidth, int newHeight) {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    log("ccc applicationScreenSizeChanged %d,%d", newWidth, newHeight);
+    auto director = cocos2d::Director::getInstance();
+    auto glview = director->getOpenGLView();
+    if (glview != NULL) {
+        glview->setFrameSize(newWidth, newHeight);
+        if (newWidth < newHeight) { //竖屏
+            glview->setDesignResolutionSize(designResolutionSize.height, designResolutionSize.width,
+                                            ResolutionPolicy::NO_BORDER);
+        } else { //横屏
+            glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height,
+                                            ResolutionPolicy::NO_BORDER);
+        }
+    }
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #endif
 }

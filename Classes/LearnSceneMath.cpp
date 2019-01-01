@@ -71,6 +71,18 @@ bool LearnSceneMath::init() {
     map.insert("w", __String::create("world"));
     map.insert("name", __String::create("junechiu"));
     log("name %s", map.at("name")->getCString());
+
+
+
+    ////////////返回按钮////////////
+    auto labelMenu = Label::createWithTTF("Back", "fonts/arial.ttf", 20.0f);
+    auto menu2 = Menu::create(
+            MenuItemLabel::create(labelMenu, [](Ref *pSender) {
+                Director::getInstance()->popScene(); //退出当前场景
+            }), NULL);
+//    menu2->setAnchorPoint(Vec2(0.5, 0.5)); 锚点默认为0，0 不能设置锚点
+    menu2->setPosition(30, 50);
+    addChild(menu2);
     return true;
 }
 

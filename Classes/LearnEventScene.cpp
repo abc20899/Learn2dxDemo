@@ -108,6 +108,32 @@ bool LearnEvent::init() {
             keyListener, this);
 
 
+
+    ////////////////////////////////事件监听封装////////////////////////////////////
+    auto director = Director::getInstance();
+    auto handler = [=](Touch *touch, Event *event) {
+        auto target = event->getCurrentTarget();
+        if (target->getBoundingBox().containsPoint(touch->getLocation())) {
+//           int a = __String::create(field->getString())->intValue();
+        }
+        return false;
+    };
+    auto addListenerToTarget = [director, handler](Node *target) {
+        auto l = EventListenerTouchOneByOne::create();
+        l->onTouchBegan = handler;
+        director->getEventDispatcher()->addEventListenerWithSceneGraphPriority(l, target);
+    };
+//    addListenerToTarget(label);
+
+    ////////////返回按钮////////////
+    auto labelMenu = Label::createWithTTF("Back", "fonts/arial.ttf", 20.0f);
+    auto menu2 = Menu::create(
+            MenuItemLabel::create(labelMenu, [](Ref *pSender) {
+                Director::getInstance()->popScene(); //退出当前场景
+            }), NULL);
+//    menu2->setAnchorPoint(Vec2(0.5, 0.5)); 锚点默认为0，0 不能设置锚点
+    menu2->setPosition(30, 50);
+    addChild(menu2);
     return true;
 }
 
