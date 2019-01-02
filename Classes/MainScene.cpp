@@ -36,13 +36,16 @@ bool MainScene::init() {
     _childTestNames.push_back("FindPairScene");
     _childTestNames.push_back("Sprite3DScene");
     _childTestNames.push_back("LittleGame");
+    _childTestNames.push_back("Box2dScene");
+    _childTestNames.push_back("PhysicsScene");
+    _childTestNames.push_back("blackwhiteblock");
 
     //添加TableView
-    auto tableView = TableView::create(this, Size(400, 300));
+    auto tableView = TableView::create(this, Size(400, visibleSize.height));
     tableView->setDirection(ScrollView::Direction::VERTICAL); //竖向滑动
-    tableView->setPosition(
-            Vec2(visibleSize.width / 2 + origin.x - tableView->getContentSize().width / 2,
-                 origin.y));
+    Size tableSize = tableView->getContentSize();
+    tableView->setPosition(Vec2(visibleSize.width / 2 + origin.x - tableSize.width / 2,
+                                origin.y));
     tableView->setDelegate(this); //设置代理对象
     tableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN); // 填充顺序
     this->addChild(tableView); //添加tableview到当前node
@@ -121,6 +124,16 @@ void MainScene::tableCellTouched(TableView *table, TableViewCell *cell) {
         case 15:
             Director::getInstance()->pushScene(little::GameScene::createScene());
             break;
+        case 16:
+            Director::getInstance()->pushScene(Box2dScene::createScene());
+            break;
+        case 17:
+            Director::getInstance()->pushScene(PhysicsScene::createScene());
+            break;
+        case 18:
+            JNITools::changeActivityOrientation(2); //竖屏
+            scheduleOnce(schedule_selector(MainScene::toBlackWhite), 0.5f);
+            break;
         default:
             break;
     }
@@ -190,7 +203,10 @@ void MainScene::toScrollbg(float dt) {
             TransitionFadeDown::create(0.5, BackgroundScroll::createScene()));
 }
 
-
+void MainScene::toBlackWhite(float dt) {
+    Director::getInstance()->pushScene(
+            TransitionFadeDown::create(0.5, blackwhite::GameScene::createScene()));
+}
 
 
 

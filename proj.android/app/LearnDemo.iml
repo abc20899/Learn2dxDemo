@@ -36,6 +36,18 @@
     <content url="file://$MODULE_DIR$/../../Classes">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../Classes/findpair">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/findpair" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/game2048">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/game2048" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/littlegame">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/littlegame" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/snake">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/snake" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Resources">
       <sourceFolder url="file://$MODULE_DIR$/../../Resources" type="java-resource" />
     </content>

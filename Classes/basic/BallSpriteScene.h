@@ -6,7 +6,7 @@
 #define __BALLSPRITE_SCENE_H__
 
 #include "cocos2d.h"
-#include "Ball.h"
+#include "basic/Ball.h"
 
 using namespace cocos2d;
 

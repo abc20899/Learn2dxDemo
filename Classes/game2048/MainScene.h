@@ -6,7 +6,7 @@
 #define PROJ_ANDROID_MAINSCENE_H
 
 #include "cocos2d.h"
-#include "../JNITools.h"
+#include "../basic/JNITools.h"
 
 using namespace cocos2d;
 

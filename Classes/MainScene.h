@@ -7,25 +7,28 @@
 
 #include "cocos2d.h"
 #include <cocos-ext.h>
-#include "BasicScene.h"
-#include "LearnScenePoint.h"
-#include "LearnSceneMath.h"
-#include "BallSpriteScene.h"
-#include "LearnEventScene.h"
-#include "LearnUIScene.h"
-#include "JoyStickScene.h"
-#include "RollBallScene.h"
+#include "basic/BasicScene.h"
+#include "basic/LearnScenePoint.h"
+#include "basic/LearnSceneMath.h"
+#include "basic/BallSpriteScene.h"
+#include "basic/LearnEventScene.h"
+#include "basic/LearnUIScene.h"
+#include "basic/JoyStickScene.h"
+#include "basic/RollBallScene.h"
 #include "game2048/MainScene.h"
 #include "game2048/GameOver.h"
 #include "game2048/HelloWorldScene.h"
 #include "snake/MainScene.h"
-#include "JNITools.h"
-#include "BackgroundScroll.h"
-#include "Puzzle.h"
-#include "ParticleScene.h"
+#include "basic/JNITools.h"
+#include "basic/BackgroundScroll.h"
+#include "basic/Puzzle.h"
+#include "basic/ParticleScene.h"
 #include "findpair/FindPairScene.h"
-#include "Sprite3DScene.h"
+#include "basic/Sprite3DScene.h"
 #include "littlegame/GameScene.h"
+#include "basic/Box2dScene.h"
+#include "basic/PhysicsScene.h"
+#include "blackwhiteblock/GameScene.h"
 
 USING_NS_CC_EXT; //using namespace cocos2d::extension
 USING_NS_CC;
@@ -63,6 +66,8 @@ public:
     void to2048(float dt);
 
     void toScrollbg(float dt);
+
+    void toBlackWhite(float dt);
 
     CREATE_FUNC(MainScene);
 };
